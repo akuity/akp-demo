@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: network-issue-demo
+spec:
+  minReadySeconds: 10
+  progressDeadlineSeconds: 20
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: network-issue-demo
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: network-issue-demo
+    spec:
+      containers:
+        - image: ghcr.io/akuity/guestbook:v0.0.2
+          args:
+            - --port=30000
+          imagePullPolicy: Always
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          name: guestbook
+          ports:
+            - containerPort: 3000
+              name: http
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            limits:
+              cpu: 100m
+              memory: 128Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          securityContext:
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 1000

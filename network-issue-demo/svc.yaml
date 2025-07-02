@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: network-issue-demo
+  namespace: akp-demo
+spec:
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: http
+  selector:
+    app.kubernetes.io/name: network-issue-demo
+  type: ClusterIP
