@@ -25,7 +25,7 @@ spec:
             - '1'
           command:
             - stress
-          image: quay.io/akuity/stress-ng
+          image: polinux/stress
           imagePullPolicy: IfNotPresent
           name: oom
           startupProbe:
