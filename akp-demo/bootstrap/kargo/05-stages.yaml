@@ -4,6 +4,8 @@ kind: Stage
 metadata:
   name: dev
   namespace: akp-demo
+  annotations:
+    kargo.akuity.io/argocd-context: '[{"name":"guestbook-dev","namespace":"argocd"}]'
 spec:
   requestedFreight:
   - origin:
@@ -23,6 +25,8 @@ kind: Stage
 metadata:
   name: staging
   namespace: akp-demo
+  annotations:
+    kargo.akuity.io/argocd-context: '[{"name":"guestbook-staging","namespace":"argocd"}]'
 spec:
   requestedFreight:
   - origin:
@@ -43,6 +47,8 @@ kind: Stage
 metadata:
   name: prod
   namespace: akp-demo
+  annotations:
+    kargo.akuity.io/argocd-context: '[{"name":"guestbook-prod","namespace":"argocd"}]'
 spec:
   requestedFreight:
   - origin:
@@ -63,6 +69,8 @@ kind: Stage
 metadata:
   name: prod-oom
   namespace: akp-demo
+  annotations:
+    kargo.akuity.io/argocd-context: '[{"name":"guestbook-prod-oom","namespace":"argocd"}]'
 spec:
   requestedFreight:
   - origin:
@@ -83,6 +91,8 @@ kind: Stage
 metadata:
   name: prod-crashloop
   namespace: akp-demo
+  annotations:
+    kargo.akuity.io/argocd-context: '[{"name":"guestbook-prod-crashloop","namespace":"argocd"}]'
 spec:
   requestedFreight:
   - origin:
